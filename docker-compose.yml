@@ -1,24 +1,21 @@
-version: "3.8"
-
+version: "3"
 services:
   localstack:
+    container_name: 'localstack_main'
     image: localstack/localstack
-    network_mode: bridge
     ports:
-      - "127.0.0.1:53:53"                # only required for Pro
-      - "127.0.0.1:53:53/udp"            # only required for Pro
-      - "127.0.0.1:443:443"              # only required for Pro
-      - "127.0.0.1:4510-4559:4510-4559"
-      - "127.0.0.1:4566:4566"
-      - "127.0.0.1:4571:4571"
+      - "4566:4566"
+      - "${PORT_WEB_UI-8000}:${PORT_WEB_UI-8080}"
     environment:
-      - SERVICES=serverless
-      - DEBUG=1
       - DATA_DIR=/tmp/localstack/data
-      # - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
-      # - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
-      - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
+      - DEBUG=1
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - PORT_WEB_UI=8080
+      - HOSTNAME_EXTERNAL=localstack
+      - AWS_ACCESS_KEY_ID=temp
+      - AWS_SECRET_ACCESS_KEY=temp
+      - LAMBDA_DOCKER_NETWORK=host
+      - LAMBDA_EXECUTOR=docker
     volumes:
-      - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
