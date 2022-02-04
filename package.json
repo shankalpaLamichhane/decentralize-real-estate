@@ -1,0 +1,25 @@
+{
+  "name": "decentralized-real-estate",
+  "version": "1.0.0",
+  "description": "Decentralized Real Estate using Blockchain technology",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shankalpaLamichhane/decentralized-real-estate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shankalpaLamichhane/decentralized-real-estate/issues"
+  },
+  "homepage": "https://github.com/shankalpaLamichhane/decentralized-real-estate#readme",
+  "dependencies": {
+    "aws-cdk-local": "^1.65.8",
+    "aws-sdk": "^2.1067.0",
+    "aws-serverless-express": "^3.4.0",
+    "express": "^4.17.2"
+  }
+}

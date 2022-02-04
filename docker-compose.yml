@@ -4,18 +4,19 @@ services:
     container_name: 'localstack_main'
     image: localstack/localstack
     ports:
-      - "4566:4566"
+      - "53:53"
+      - "443:443"
+      - "4510-4520:4510-4520"
+      - "4566-4620:4566-4620"
       - "${PORT_WEB_UI-8000}:${PORT_WEB_UI-8080}"
     environment:
+      - SERVICES=serverless,cognito,rds,sqs,sns,cloudformation
       - DATA_DIR=/tmp/localstack/data
       - DEBUG=1
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - PORT_WEB_UI=8080
-      - HOSTNAME_EXTERNAL=localstack
-      - AWS_ACCESS_KEY_ID=temp
-      - AWS_SECRET_ACCESS_KEY=temp
-      - LAMBDA_DOCKER_NETWORK=host
+      - HOST_TMP_FOLDER=${TMPDIR}
+      - DEFAULT_REGION=us-west-2
       - LAMBDA_EXECUTOR=docker
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "${TMPDIR:-/tmp/localstack}:/t mp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
