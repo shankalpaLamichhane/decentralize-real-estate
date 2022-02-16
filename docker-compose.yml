@@ -1,22 +1,16 @@
 version: "3"
 services:
-  localstack:
-    container_name: 'localstack_main'
-    image: localstack/localstack
-    ports:
-      - "53:53"
-      - "443:443"
-      - "4510-4520:4510-4520"
-      - "4566-4620:4566-4620"
-      - "${PORT_WEB_UI-8000}:${PORT_WEB_UI-8080}"
+  api: 
+    build: .
     environment:
-      - SERVICES=serverless,cognito,rds,sqs,sns,cloudformation
-      - DATA_DIR=/tmp/localstack/data
-      - DEBUG=1
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=${TMPDIR}
-      - DEFAULT_REGION=us-west-2
-      - LAMBDA_EXECUTOR=docker
+      - MONGO_URL=${MONGO_URL}
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/t mp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"

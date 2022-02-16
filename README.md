@@ -60,7 +60,7 @@ aws --endpoint-url=http://localhost:4566 lambda invoke --function-name worker ou
 
 #Static Website from bucket created in console
     - `aws s3 --endpoint-url="http://localhost:4566" website "s3://static-s3-bucket" --index-document index.html --error-document index.html`
-    - `aws s3 --endpoint-url="http://localhost:4566" sync ${your_folder_to_website} "s3://static-s3-bucket"`
+    - `aws s3 --endpoint-url="http://localhost:4566" sync ${your_folder_to_website} "s3://static-s3-bucket"`a
 #Create table in dynamoDB
     - `aws --endpoint-url=http://localhost:4566 dynamodb create-table --cli-input-json file://table-definition.json`
     - View Table command `aws --endpoint-url=http://localhost:4566 dynamodb scan --table-name "Music"`
