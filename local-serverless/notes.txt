@@ -1,0 +1,10 @@
+npm i -g serverless serverless-dynamodb-local serverless-offline
+
+after you have installed aws-cli:
+aws configure
+
+sls dynamodb install   / serverless plugin install -n serverless-dynamodb-local (this works )
+serverless plugin install -n serverless-offline
+serverless dynamodb install
+serverless offline start
+serverless dynamodb start
