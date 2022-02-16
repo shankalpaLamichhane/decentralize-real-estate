@@ -14,3 +14,17 @@ exports.load = async (req,res,next,id) => {
 
 exports.get = (req,res) => res.json(req.locals.user.transform());
 
+exports.loggedIn = (req,res) => res.json(req.user.transform());
+
+exports.create = async (req,res,next) => {
+    try{
+        const user = new User(req.body);
+        const savedUser = await user.save();
+        res.status(httpStatus.CREATED);
+        res.json(savedUser.transform());
+    }catch(error) {
+    }
+}
+
+exports.get = (req,res) => res.json(req.locals.user.transform());
+

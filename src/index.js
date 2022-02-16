@@ -1,3 +1,4 @@
+Promise = require('bluebird');
 const {port,env} = require('./config/context');
 const logger = require('./config/logger');
 const app = require('./config/express');
