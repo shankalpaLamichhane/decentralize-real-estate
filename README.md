@@ -1,6 +1,5 @@
 # decentralize-real-estate
 
-
 Commands for AWS using LocalStack
 ##Run LocalStack
 docker run --rm -it -p 4566:4566 -p 4571;4571 localstack/localstack
@@ -85,7 +84,6 @@ aws --endpoint-url=http://localhost:4566 lambda invoke --function-name worker ou
 #Lambda function to get data from DynamoDB
 #API Gateway to call lambda from static website
 #Display data in static website coming from API Gateway
-
 
 
 ##AWS Lambda
